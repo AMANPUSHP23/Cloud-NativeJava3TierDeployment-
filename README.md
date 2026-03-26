@@ -1,4 +1,4 @@
-# 🚀 Cloud-Native Java Web Application Deployment
+# 🚀 Cloud-NativeJava3TierDeployment
 
 [![Java Version](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 [![Spring Boot](https://img.shields.io/badge/Spring--Boot-3.1.3-green.svg)](https://spring.io/projects/spring-boot)

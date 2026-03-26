@@ -1,4 +1,4 @@
-# 🚀 Cloud-Native Java Web Application Deployment
+# 🚀 Cloud-NativeJava3TierDeployment
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/your-username/your-repo/actions) <!-- Update with actual CI/CD build status link -->
 [![Java Version](https://img.shields.io/badge/Java-8-orange.svg)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
