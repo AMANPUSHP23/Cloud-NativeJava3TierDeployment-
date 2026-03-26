@@ -1,101 +1,66 @@
-# 🚀 Cloud-NativeJava3TierDeployment
+<div align="center">
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/your-username/your-repo/actions) <!-- Update with actual CI/CD build status link -->
-[![Java Version](https://img.shields.io/badge/Java-8-orange.svg)](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
-[![Spring Framework](https://img.shields.io/badge/Spring-4.x-green.svg)](https://spring.io/)
-[![Ansible](https://img.shields.io/badge/Ansible-Automation-red.svg)](https://www.ansible.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Cloud-NativeJava3TierDeployment
 
-## 📌 Overview
-This project features a **Cloud-Native Java Web Application** designed with a multi-tier architecture. It focuses on the refactoring and automated deployment of the application onto **AWS Infrastructure**, leveraging **Ansible** for seamless configuration management and scalability. It serves as a robust example of modern enterprise application development and deployment practices.
+<p><strong>Ansible automation support for the AWS deployment workflow.</strong></p>
 
-The project demonstrates a production-ready environment setup including load balancing, auto-scaling, and integrated caching and messaging services.
+[![AWS](https://img.shields.io/badge/AWS-Infrastructure-FF9900?style=for-the-badge)](https://aws.amazon.com/)
+[![Ansible](https://img.shields.io/badge/Ansible-Automation-EE0000?style=for-the-badge)](https://www.ansible.com/)
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
----
-
-## 🏗 Architecture
-The application consists of the following tiers:
-1.  **Web Tier**: Nginx/Apache (Load Balancer).
-2.  **App Tier**: Apache Tomcat 8 (Java Spring Application).
-3.  **Database Tier**: MySQL (User Data).
-4.  **Messaging Tier**: RabbitMQ (Queue Management).
-5.  **Caching Tier**: Memcached (Session/Data Caching).
+</div>
 
 ---
 
-## 🛠 Tech Stack
+## Overview
 
-| Category | Technology |
-| :--- | :--- |
-| **Language** | Java 8 (OpenJDK) |
-| **Framework** | Spring MVC, Spring Security |
-| **Automation** | Ansible 2.x |
-| **App Server** | Apache Tomcat 8 |
-| **Database** | MySQL 5.7+ |
-| **Middleware** | RabbitMQ, Memcached |
-| **Frontend** | Bootstrap, jQuery, Select2, Popper.js |
+This directory contains Ansible assets used to support deployment and environment preparation for the main AWS-based Java application architecture.
 
----
+The wider platform is centered on **AWS Elastic Beanstalk**, **Application Load Balancer**, and **Auto Scaling**, with supporting services including **Amazon RDS**, **Amazon ElastiCache**, **Amazon MQ**, **Amazon S3**, **Amazon CloudFront**, and **Amazon Route 53**.
 
-## 📂 Project Structure
+## Deployment Summary
+
+> Deployed Java web application using AWS Elastic Beanstalk with load balancing and auto scaling.
+>
+> Integrated AWS services including RDS, ElastiCache, Amazon MQ, and S3.
+>
+> Improved performance using CloudFront CDN and Route 53 DNS.
+
+## Infra View
+
+```mermaid
+flowchart TD
+    Route53[Amazon Route 53] --> CloudFront[Amazon CloudFront]
+    CloudFront --> ALB[Application Load Balancer]
+    ALB --> EB[AWS Elastic Beanstalk]
+    EB --> RDS[Amazon RDS]
+    EB --> Cache[Amazon ElastiCache]
+    EB --> MQ[Amazon MQ]
+    S3[Amazon S3 Artifacts] --> EB
+```
+
+## Ansible Scope
+
+- Prepare or configure supporting hosts and services where manual setup is undesirable.
+- Standardize repeatable deployment-related operations.
+- Keep infrastructure and environment steps automatable and version controlled.
+
+## Files
 
 ```text
-├── ansible/                # Infrastructure Automation
-│   ├── tomcat_setup.yml    # Tomcat 8 installation & OS hardening
-│   └── vpro-app-setup.yml  # Deployment of WAR artifact from Nexus
-├── src/                    # Source Code
-│   ├── main/java           # Spring Controller & Services
-│   ├── main/resources      # Properties and Config files
-│   └── main/webapp         # UI Assets (JSPs, CSS, JS, Bootstrap, jQuery, Popper.js)
-└── pom.xml                 # Maven Dependencies
+tomcat_setup.yml            # Tomcat-related setup automation
+vpro-app-setup.yml          # Application deployment support
 ```
 
----
+## Configuration Notes
 
-## 🚀 Deployment Guide
+Application settings are primarily defined in `src/main/resources/application.properties`, including:
 
-### Prerequisites
-*   An AWS Account.
-*   Ansible installed on your control node.
-*   Java 8 and Maven installed locally for builds.
+- Database connectivity
+- Cache endpoint configuration
+- Messaging broker configuration
+- Spring application settings
 
-### 1. Build the Artifact
-```bash
-mvn clean install
-```
-*This generates `vprofile-v2.war` in the target directory.*
+## License
 
-### 2. Infrastructure Automation (Ansible)
-Navigate to the `ansible/` directory and run the playbooks to provision your servers.
-
-**Setup Tomcat:**
-```bash
-ansible-playbook -i inventory tomcat_setup.yml
-```
-
-**Deploy Application:**
-```bash
-ansible-playbook -i inventory vpro-app-setup.yml --extra-vars "vprofile_version=v1"
-```
-
----
-
-## 🔧 Configuration Details
-The application configuration is managed via `application.properties`.
-*   **Database Connectivity**: Managed via JDBC.
-*   **File Uploads**: Profile images are stored at `${catalina.home}/tmpFiles`.
-*   **Validation**: Custom messages are defined in `validation.properties`.
-
----
-
-## 🤝 Contributing
-1.  Fork the Project.
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
-4.  Push to the Branch (`git push origin feature/AmazingFeature`).
-5.  Open a Pull Request.
-
----
-
-## 📄 License
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License.
